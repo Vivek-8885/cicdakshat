@@ -1,4 +1,6 @@
-FROM openjdk:8
-EXPOSE 80
-COPY target/devops-integration.jar devops-integration.jar
-ENTRYPOINT ["java","-jar","/devops-integration.jar"]
+FROM eclipse-temurin:17-jdk-jammy
+WORKDIR /app
+ARG JAR_FILE=target/*.jar
+COPY ${JAR_FILE} app.jar
+EXPOSE 8080
+ENTRYPOINT ["java","-jar","/app/app.jar"]
